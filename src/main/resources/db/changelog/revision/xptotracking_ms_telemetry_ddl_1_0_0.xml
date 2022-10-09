@@ -1,0 +1,98 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+	<!-- ******************************** -->
+	<!-- *** BEGIN TABLE DECLARATIONS *** -->
+	<!-- ******************************** -->
+
+	<changeSet
+		logicalFilePath="db/changelog/revision/xptotracking_ms_telemetry_ddl_1_0_0.xml"
+		author="William.Marinho"
+		id="xptotracking_ms_telemetry_ddl_1_0_0-REV-001">
+
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="TB_TELEMETRY_PROFILE" />
+			</not>
+		</preConditions>
+
+		<createTable tableName="TB_TELEMETRY_PROFILE">
+			<column name="COD_TELEMETRY_PROFILE" type="UUID">
+				<constraints nullable="false" primaryKey="true"
+					primaryKeyName="TB_TELEMETRY_PROFILE_PKEY" />
+			</column>
+			<column name="TXT_NAME" type="VARCHAR(255 BYTE)">
+				<constraints nullable="false"
+					uniqueConstraintName="TB_TELEMETRY_PROFILE_UQ" />
+			</column>
+
+		</createTable>
+
+		<rollback />
+
+	</changeSet>
+
+	<changeSet
+		logicalFilePath="db/changelog/revision/xptotracking_ms_telemetry_ddl_1_0_0.xml"
+		author="William.Marinho"
+		id="xptotracking_ms_telemetry_ddl_1_0_0-REV-002">
+
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="TB_TELEMETRY_PROFILE" />
+			<not>
+				<tableExists tableName="TB_TELEMETRY_PROFILE_SENSOR" />
+				<tableExists tableName="TB_SENSOR" />
+			</not>
+		</preConditions>
+
+		<createTable tableName="TB_SENSOR">
+			<column name="COD_SENSOR" type="UUID">
+				<constraints nullable="false" primaryKey="true"
+					primaryKeyName="TB_SENSOR_PKEY" />
+			</column>
+			<column name="TXT_NAME" type="VARCHAR(100 BYTE)">
+				<constraints nullable="false" uniqueConstraintName="TB_SENSOR_UK" unique="true" />
+			</column>
+			<column name="TXT_TYPE" type="VARCHAR(20 BYTE)">
+				<constraints nullable="false" />
+			</column>
+			<column name="NUM_MIN_VALUE" type="double">
+				<constraints nullable="false" />
+			</column>
+			<column name="NUM_MAX_VALUE" type="double">
+				<constraints nullable="false" />
+			</column>
+			<column name="TXT_UNIT" type="VARCHAR(10 BYTE)" />
+		</createTable>
+
+		<createTable tableName="TB_TELEMETRY_PROFILE_SENSOR">
+			<column name="COD_TELEMETRY" type="UUID">
+				<constraints nullable="false" primaryKey="true"
+					primaryKeyName="COD_TELEMETRY_PK"
+					foreignKeyName="COD_TELEMETRY_FK"
+					references="TB_TELEMETRY_PROFILE(COD_TELEMETRY_PROFILE)" />
+			</column>
+			<column name="COD_SENSOR" type="UUID">
+				<constraints nullable="false" primaryKey="true"
+					primaryKeyName="COD_SENSOR_PK"
+					foreignKeyName="COD_SENSOR_FK" references="TB_SENSOR(COD_SENSOR)" />
+			</column>
+		</createTable>
+
+		<rollback />
+
+	</changeSet>
+
+
+	<!-- ******************************** -->
+	<!-- *** END TABLE DECLARATIONS *** -->
+	<!-- ******************************** -->
+
+	<!-- ******************************** -->
+	<!-- *** BEGIN TABLE CONSTRAINTS *** -->
+	<!-- ******************************** -->
+
+</databaseChangeLog>

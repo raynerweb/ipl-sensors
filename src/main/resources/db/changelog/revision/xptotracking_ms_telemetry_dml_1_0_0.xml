@@ -1,0 +1,54 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+	<changeSet logicalFilePath="db/changelog/revision/xptotracking_ms_telemetry_dml_1_0_0.xml" author="William.Marinho" id="xptotracking_ms_telemetry_dml_0_1_0-REV-001_DATA">
+		<insert tableName="TB_TELEMETRY_PROFILE">
+			<column name="COD_TELEMETRY_PROFILE" value="e8d6cede-e3dc-47c9-a61d-429f316c35cf" />
+			<column name="TXT_NAME" value="Profile Banana" />
+		</insert>
+		<insert tableName="TB_TELEMETRY_PROFILE">
+			<column name="COD_TELEMETRY_PROFILE" value="e8d6cede-e3dc-47c9-a61d-429f316c35ce" />
+			<column name="TXT_NAME" value="Profile Banana2" />
+		</insert>
+		<insert tableName="TB_TELEMETRY_PROFILE">
+			<column name="COD_TELEMETRY_PROFILE" value="e8d6cede-e3dc-47c9-a61d-429f316c35cd" />
+			<column name="TXT_NAME" value="Profile Banana3" />
+		</insert>
+		<insert tableName="TB_SENSOR">
+			<column name="COD_SENSOR" value="f8d6cede-e3dc-47c9-a61d-429f316c35cf" />
+			<column name="TXT_NAME" value="RPM_1" />
+			<column name="TXT_TYPE" value="RPM" />
+			<column name="NUM_MIN_VALUE" value="0.0" />
+			<column name="NUM_MAX_VALUE" value="10.0" />
+			<column name="TXT_UNIT" value="rpms" />
+		</insert>
+		<insert tableName="TB_SENSOR">
+			<column name="COD_SENSOR" value="f8d6cede-e3dc-47c9-a61d-429f316c35ce" />
+			<column name="TXT_NAME" value="RPM_2" />
+			<column name="TXT_TYPE" value="RPM" />
+			<column name="NUM_MIN_VALUE" value="0.0" />
+			<column name="NUM_MAX_VALUE" value="10000.0" />
+			<column name="TXT_UNIT" value="rpms" />
+		</insert>
+		<insert tableName="TB_SENSOR">
+			<column name="COD_SENSOR" value="f8d6cede-e3dc-47c9-a61d-429f316c35cd" />
+			<column name="TXT_NAME" value="SPEED_1" />
+			<column name="TXT_TYPE" value="SPEED" />
+			<column name="NUM_MIN_VALUE" value="0.0" />
+			<column name="NUM_MAX_VALUE" value="390.0" />
+			<column name="TXT_UNIT" value="km/h" />
+		</insert>
+		<insert tableName="TB_TELEMETRY_PROFILE_SENSOR">
+			<column name="COD_SENSOR" value="f8d6cede-e3dc-47c9-a61d-429f316c35cf" />
+			<column name="COD_TELEMETRY" value="e8d6cede-e3dc-47c9-a61d-429f316c35cf" />
+		</insert>
+		<insert tableName="TB_TELEMETRY_PROFILE_SENSOR">
+			<column name="COD_SENSOR" value="f8d6cede-e3dc-47c9-a61d-429f316c35ce" />
+			<column name="COD_TELEMETRY" value="e8d6cede-e3dc-47c9-a61d-429f316c35cf" />
+		</insert>
+	</changeSet>
+
+</databaseChangeLog>
